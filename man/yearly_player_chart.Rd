@@ -13,6 +13,6 @@ yearly_player_chart(players, years, scoring, con)
 creates yearly plot
 }
 \examples{
-yearly_player_chart <- function(players,years,scoring,con)
+yearly_player_chart(players,years,scoring,con)
 
 }
