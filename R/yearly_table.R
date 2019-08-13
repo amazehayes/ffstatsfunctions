@@ -40,4 +40,3 @@ yearly_player_df <- function(players,years){
 
   return(df3)
 }
-

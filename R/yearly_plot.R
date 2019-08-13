@@ -8,7 +8,7 @@
 #'
 #' @return NULL
 #'
-#' @examples yearly_player_chart(players,years,scoring)
+#' @examples yearly_player_chart <- function(players,years,scoring)
 #'
 #' @export
 
@@ -17,10 +17,10 @@ yearly_player_chart <- function(players,years,scoring){
   years <- years
   scoring <- scoring
   tt_p = paste("Yearly Finishes for", paste(players, collapse = " & "))
-  
+
   df <- yearly_player_df(players,years)
   df <- df %>% select(year,player,position,scoring,paste0(scoring,"_rank"))
-  mround <- function(x,base){ 
+  mround <- function(x,base){
     base*round(x/base)
   }
   pmax <- mround(max(df[,5],na.rm = TRUE),5) + 5
@@ -28,18 +28,18 @@ yearly_player_chart <- function(players,years,scoring){
   colors = colors[1:length(players)]
   # requires "ggthemer
   ggthemr::ggthemr("dust")
-  s = ggplot(df,aes(x=year,y=get(names(df)[5]),color=player)) + 
-    geom_point() + 
+  s = ggplot(df,aes(x=year,y=get(names(df)[5]),color=player)) +
+    geom_point() +
     geom_line() +
     theme(title = element_text(size=14),
           axis.title=element_text(size=20),
-          legend.title=element_blank()) + 
-    scale_y_reverse(limits=c(pmax,0)) + 
-    scale_color_manual(values = colors) + 
+          legend.title=element_blank()) +
+    scale_y_reverse(limits=c(pmax,0)) +
+    scale_color_manual(values = colors) +
     labs(y='Position Finish',title = tt_p,x="Year")
-  
+
   g <- plotly_build(s)
-  
+
   for(i in 1:length(players)){
     p_name <- g$x$data[[i]]$name
     if(!(p_name %in% df$player)){
@@ -51,7 +51,7 @@ yearly_player_chart <- function(players,years,scoring){
                                 "Year:", dat$year, "<br>",
                                 "Fantasy Points Total:", as.vector(unlist(dat[,4])))
   }
-  
+
   final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/amazehayes/ffstats_navbar/master/www/FFStats_BlackLogo_3.5x3.5.png",
                                            xref = "paper",
                                            yref = "paper",
@@ -61,7 +61,7 @@ yearly_player_chart <- function(players,years,scoring){
                                            sizey = 1,
                                            opacity = 0.1,
                                            layer = "below"),
-                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.5)) %>% 
+                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.5)) %>%
     config(displayModeBar = FALSE)
   return(final_prod)
 }
