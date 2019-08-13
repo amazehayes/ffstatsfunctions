@@ -5,14 +5,15 @@
 #' @param players a vector of players
 #' @param years a vector of years
 #' @param con DB connection
+#' @param pfrplayers pfr DB
 #'
 #' @return dataframe
 #'
-#' @examples yearly_player_df(players,years,con)
+#' @examples yearly_player_df(players,years,con,pfrplayers)
 #'
 #' @export
 
-yearly_player_df <- function(players,years,con){
+yearly_player_df <- function(players,years,con,pfrplayers){
   years <- years
   years2 <- paste(years, collapse = ",")
   v <- paste0("select year,player,week,position,player_id,ppr,halfppr,standard,sixpttd from finalweeklydata where year in (", years2,")")

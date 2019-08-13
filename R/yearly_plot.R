@@ -6,14 +6,15 @@
 #' @param years a vector of years
 #' @param scoring ppr,halfppr,standard,sixpttd
 #' @param con DB connection
+#' @param pfrplayers pfr DB
 #'
 #' @return plotly object
 #'
-#' @examples yearly_player_chart(players,years,scoring,con)
+#' @examples yearly_player_chart(players,years,scoring,con,pfrplayers)
 #'
 #' @export
 
-yearly_player_chart <- function(players,years,scoring,con){
+yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
   players <- c(players)
   years <- years
   scoring <- scoring
