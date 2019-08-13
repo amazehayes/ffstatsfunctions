@@ -8,7 +8,7 @@
 #'
 #' @return NULL
 #'
-#' @examples yearly_comp_player_df(players,years,con)
+#' @examples yearly_player_df(players,years,con)
 #'
 #' @export
 
