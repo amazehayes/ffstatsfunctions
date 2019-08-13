@@ -4,7 +4,7 @@
 \alias{yearly_player_chart}
 \title{Yearly Plot}
 \usage{
-yearly_player_chart(players, years, scoring, con)
+yearly_player_chart(players, years, scoring, con, pfrplayers)
 }
 \arguments{
 \item{players}{a vector of players}
@@ -14,6 +14,8 @@ yearly_player_chart(players, years, scoring, con)
 \item{scoring}{ppr,halfppr,standard,sixpttd}
 
 \item{con}{DB connection}
+
+\item{pfrplayers}{pfr DB}
 }
 \value{
 plotly object
@@ -22,6 +24,6 @@ plotly object
 creates yearly plot
 }
 \examples{
-yearly_player_chart(players,years,scoring,con)
+yearly_player_chart(players,years,scoring,con,pfrplayers)
 
 }

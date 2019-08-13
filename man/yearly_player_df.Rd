@@ -4,7 +4,7 @@
 \alias{yearly_player_df}
 \title{Yearly Table}
 \usage{
-yearly_player_df(players, years, con)
+yearly_player_df(players, years, con, pfrplayers)
 }
 \arguments{
 \item{players}{a vector of players}
@@ -12,6 +12,8 @@ yearly_player_df(players, years, con)
 \item{years}{a vector of years}
 
 \item{con}{DB connection}
+
+\item{pfrplayers}{pfr DB}
 }
 \value{
 dataframe
@@ -20,6 +22,6 @@ dataframe
 generates yearly table
 }
 \examples{
-yearly_player_df(players,years,con)
+yearly_player_df(players,years,con,pfrplayers)
 
 }
