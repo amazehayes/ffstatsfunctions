@@ -13,6 +13,6 @@ yearly_player_df(players, years, con)
 generates yearly table
 }
 \examples{
-yearly_comp_player_df(players,years,con)
+yearly_player_df(players,years,con)
 
 }
