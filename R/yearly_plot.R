@@ -8,7 +8,7 @@
 #'
 #' @return NULL
 #'
-#' @examples yearly_player_chart <- function(players,years,scoring)
+#' @examples yearly_player_chart(players,years,scoring)
 #'
 #' @export
 
