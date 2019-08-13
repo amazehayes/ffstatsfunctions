@@ -4,14 +4,15 @@
 #'
 #' @param players
 #' @param years
+#' @param con
 #'
 #' @return NULL
 #'
-#' @examples yearly_comp_player_df(players,years)
+#' @examples yearly_comp_player_df(players,years,con)
 #'
 #' @export
 
-yearly_player_df <- function(players,years){
+yearly_player_df <- function(players,years,con){
   years <- years
   years2 <- paste(years, collapse = ",")
   v <- paste0("select year,player,week,position,player_id,ppr,halfppr,standard,sixpttd from finalweeklydata where year in (", years2,")")

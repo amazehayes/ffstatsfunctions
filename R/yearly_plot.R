@@ -5,20 +5,21 @@
 #' @param players
 #' @param years
 #' @param scoring
+#' @param con
 #'
 #' @return NULL
 #'
-#' @examples yearly_player_chart <- function(players,years,scoring)
+#' @examples yearly_player_chart <- function(players,years,scoring,con)
 #'
 #' @export
 
-yearly_player_chart <- function(players,years,scoring){
+yearly_player_chart <- function(players,years,scoring,con){
   players <- c(players)
   years <- years
   scoring <- scoring
   tt_p = paste("Yearly Finishes for", paste(players, collapse = " & "))
 
-  df <- yearly_player_df(players,years)
+  df <- yearly_player_df(players,years,con)
   df <- df %>% select(year,player,position,scoring,paste0(scoring,"_rank"))
   mround <- function(x,base){
     base*round(x/base)
