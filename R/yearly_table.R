@@ -2,11 +2,11 @@
 #'
 #' @description generates yearly table
 #'
-#' @param players
-#' @param years
-#' @param con
+#' @param players a vector of players
+#' @param years a vector of years
+#' @param con DB connection
 #'
-#' @return NULL
+#' @return dataframe
 #'
 #' @examples yearly_player_df(players,years,con)
 #'

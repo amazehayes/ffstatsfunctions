@@ -2,12 +2,12 @@
 #'
 #' @description creates yearly plot
 #'
-#' @param players
-#' @param years
-#' @param scoring
-#' @param con
+#' @param players a vector of players
+#' @param years a vector of years
+#' @param scoring ppr,halfppr,standard,sixpttd
+#' @param con DB connection
 #'
-#' @return NULL
+#' @return plotly object
 #'
 #' @examples yearly_player_chart(players,years,scoring,con)
 #'
