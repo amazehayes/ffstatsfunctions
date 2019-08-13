@@ -2,36 +2,42 @@
 #'
 #' @description generates yearly table
 #'
-#' @param pA
-#' @param pB
-#' @param pC
+#' @param players
 #' @param years
-#' @param scoring
 #'
 #' @return NULL
 #'
-#' @examples yearly_comp_player_df(pA=NULL,pB=NULL,pC=NULL,years,scoring)
+#' @examples yearly_comp_player_df(players,years)
 #'
 #' @export
 
-yearly_comp_player_df <- function(pA=NULL,pB=NULL,pC=NULL,years,scoring){
-  all_players <- c(pA,pB,pC)
-  # find proper columns
-  scoring_str <- paste0('^',scoring,'$')
-  temp_df <- finalWeeklyData %>% select(Year,Player2,Player,Position,Team,matches(scoring_str))
-  colnames(temp_df)[6] <- "points"
+yearly_player_df <- function(players,years){
+  years <- years
+  years2 <- paste(years, collapse = ",")
+  v <- paste0("select year,player,week,position,player_id,ppr,halfppr,standard,sixpttd from finalweeklydata where year in (", years2,")")
+  df <- dbGetQuery(con, v)
+  players <- c(players)
+  playerids <- c()
+  for(i in 1:length(players)){
+    id <- pfrplayers$player_id[pfrplayers$player2 == players[i]]
+    playerids <- c(playerids,id)
+  }
 
-  year_df <- temp_df %>%
-    group_by(Year,Player2) %>%
-    summarise(points_total = sum(points))
+  df2 <- df %>% select(year,player_id,ppr,halfppr,standard,sixpttd) %>%
+    group_by(player_id,year) %>% summarise_all(sum)
+  positions <- unique(df %>% arrange(-year,-week) %>% select(year,player_id,player,position))
+  df2 <- merge(df2, positions, by = c("year","player_id"))
+  df2 <- df2 %>% group_by(year,position) %>%
+    mutate(ppr_rank = rank(-ppr, ties.method = "first"),
+           halfppr_rank = rank(-halfppr, ties.method = "first"),
+           standard_rank = rank(-standard, ties.method = "first"),
+           sixpttd_rank = rank(-sixpttd, ties.method = "first"))
 
-  positions <- unique(finalWeeklyData %>% select(Year, Player2, Position))
-  year_df <- merge(year_df, positions, by = c("Year","Player2"))
+  df3 <- df2 %>% filter(player_id %in% playerids) %>%
+    select(year,player,position,ppr,ppr_rank,halfppr,halfppr_rank,
+           standard,standard_rank,sixpttd,sixpttd_rank) %>%
+    arrange(-year)
 
-  year_df <- year_df %>%
-    group_by(Year,Position) %>%
-    mutate(Rank = rank(-points_total, ties.method = "first"))
-
-  total_df <- year_df %>% filter(Player2 %in% all_players & Year %in% years)
-  return(total_df)
+  return(df3)
 }
+
