@@ -7,7 +7,14 @@
 yearly_player_df(players, years, con)
 }
 \arguments{
-\item{con}{}
+\item{players}{a vector of players}
+
+\item{years}{a vector of years}
+
+\item{con}{DB connection}
+}
+\value{
+dataframe
 }
 \description{
 generates yearly table

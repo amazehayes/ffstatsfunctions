@@ -7,7 +7,16 @@
 yearly_player_chart(players, years, scoring, con)
 }
 \arguments{
-\item{con}{}
+\item{players}{a vector of players}
+
+\item{years}{a vector of years}
+
+\item{scoring}{ppr,halfppr,standard,sixpttd}
+
+\item{con}{DB connection}
+}
+\value{
+plotly object
 }
 \description{
 creates yearly plot
