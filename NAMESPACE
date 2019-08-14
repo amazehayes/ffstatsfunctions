@@ -3,5 +3,8 @@
 export(coaching_table)
 export(create_title)
 export(mround)
+export(posrank_chart)
+export(ppg_chart)
+export(ppg_table)
 export(yearly_player_chart)
 export(yearly_player_df)
