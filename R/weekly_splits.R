@@ -28,6 +28,12 @@ weekly_split <- function(fwd,player_pos_name, measure_vars, year_filter,
                          week_split, player_pos_split, home_away_split, team_split,
                          opponent_split, gameday_split, gamestart_time_split, win_split,
                          posrank_year = 2018, df_output, transpose_output = TRUE,pfrplayers){
+  filter <- dplyr::filter
+  select <- dplyr::select
+  summarize <-dplyr::summarize
+  count <- dplyr::count
+  gather <- tidyr::gather
+  spread <- tidyr::spread
 
   measure_vars <- tolower(measure_vars)
 
