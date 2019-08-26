@@ -5,6 +5,7 @@
 #' @param position QB,RB,WR,TE
 #' @param scoring ppr,halfppr,standard,sixpttd
 #' @param fwd a player database
+#' @param pfrplayers PFR database
 #'
 #' @return dataframe
 #'
@@ -12,7 +13,7 @@
 #'
 #' @export
 
-zscore_df <- function(position,scoring,fwd){
+zscore_df <- function(position,scoring,fwd,pfrplayers){
   pos <- position
   scoring <- tolower(scoring)
 

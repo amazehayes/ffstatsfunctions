@@ -6,6 +6,7 @@
 #' @param position QB,RB,WR,TE
 #' @param scoring ppr,halfppr,standard,sixpttd
 #' @param fwd a player database
+#' @param pfrplayers PFR database
 #'
 #' @return plotly object
 #'
@@ -13,12 +14,12 @@
 #'
 #' @export
 
-zscore_chart <- function(players,position,scoring,fwd){
+zscore_chart <- function(players,position,scoring,fwd,pfrplayers){
   all_players <- players
   pos <- position
   scoring <- tolower(scoring)
 
-  df <- zscore_df(pos,scoring)
+  df <- zscore_df(pos,scoring,fwd,pfrplayers)
 
   playerdf <- df %>% filter(player2 %in% all_players)
   playerdf2 <- playerdf %>% select(player,zscore,age,position)
