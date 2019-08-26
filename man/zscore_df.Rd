@@ -4,7 +4,7 @@
 \alias{zscore_df}
 \title{Z-Score Table}
 \usage{
-zscore_df(position, scoring, fwd)
+zscore_df(position, scoring, fwd, pfrplayers)
 }
 \arguments{
 \item{position}{QB,RB,WR,TE}
@@ -12,6 +12,8 @@ zscore_df(position, scoring, fwd)
 \item{scoring}{ppr,halfppr,standard,sixpttd}
 
 \item{fwd}{a player database}
+
+\item{pfrplayers}{PFR database}
 }
 \value{
 dataframe
