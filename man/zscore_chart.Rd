@@ -4,7 +4,7 @@
 \alias{zscore_chart}
 \title{Z-Score Chart}
 \usage{
-zscore_chart(players, position, scoring)
+zscore_chart(players, position, scoring, fwd)
 }
 \arguments{
 \item{players}{player name}
@@ -12,6 +12,8 @@ zscore_chart(players, position, scoring)
 \item{position}{QB,RB,WR,TE}
 
 \item{scoring}{ppr,halfppr,standard,sixpttd}
+
+\item{fwd}{a player database}
 }
 \value{
 plotly object
