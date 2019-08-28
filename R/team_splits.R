@@ -4,15 +4,16 @@
 #'
 #' @param player a player name
 #' @param years year vector
+#' @param fwd player database
 #' @param pfrplayers PFR database
 #'
 #' @return datatable
 #'
-#' @examples team_splits(player,years,pfrplayers)
+#' @examples team_splits(player,years,fwd,pfrplayers)
 #'
 #' @export
 
-team_splits <- function(player,years,pfrplayers){
+team_splits <- function(player,years,fwd,pfrplayers){
   player_pos_name <- player
   year_filter <- c(years)
   playerids <- pfrplayers$player_id[pfrplayers$player2 == player_pos_name]
