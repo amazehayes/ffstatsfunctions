@@ -14,6 +14,18 @@
 #' @export
 
 team_splits <- function(player,years,fwd,pfrplayers){
+  filter <- dplyr::filter
+
+  select <- dplyr::select
+
+  summarize <-dplyr::summarize
+
+  count <- dplyr::count
+
+  gather <- tidyr::gather
+
+  spread <- tidyr::spread
+
   player_pos_name <- player
   year_filter <- c(years)
   playerids <- pfrplayers$player_id[pfrplayers$player2 == player_pos_name]
