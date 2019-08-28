@@ -4,12 +4,14 @@
 \alias{team_splits}
 \title{Team Splits Table}
 \usage{
-team_splits(player, years, pfrplayers)
+team_splits(player, years, fwd, pfrplayers)
 }
 \arguments{
 \item{player}{a player name}
 
 \item{years}{year vector}
+
+\item{fwd}{player database}
 
 \item{pfrplayers}{PFR database}
 }
@@ -20,6 +22,6 @@ datatable
 creates team splits table
 }
 \examples{
-team_splits(player,years,pfrplayers)
+team_splits(player,years,fwd,pfrplayers)
 
 }
