@@ -15,6 +15,18 @@
 #' @export
 
 home_splits_chart <- function(players,years,scoring,fwd,pfrplayers){
+  filter <- dplyr::filter
+
+  select <- dplyr::select
+
+  summarize <-dplyr::summarize
+
+  count <- dplyr::count
+
+  gather <- tidyr::gather
+
+  spread <- tidyr::spread
+
   players <- sort(players)
   playerids <- c()
   for(i in 1:length(players)){
