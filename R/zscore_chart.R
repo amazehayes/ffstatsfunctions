@@ -44,7 +44,9 @@ zscore_chart <- function(players,position,scoring,fwd,pfrplayers){
                                            y = 1,
                                            sizex = 1,
                                            sizey = 1,
-                                           opacity = 0.2,
-                                           layer = "below"))
+                                           opacity = 0.1,
+                                           layer = "below"),
+                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
+    config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
   return(final_prod)
 }
