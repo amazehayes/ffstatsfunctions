@@ -3,6 +3,7 @@
 export(clean_names)
 export(coaching_table)
 export(create_title)
+export(home_splits_chart)
 export(mround)
 export(na.is.zero)
 export(posrank_chart)
