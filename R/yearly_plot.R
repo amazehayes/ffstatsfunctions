@@ -58,7 +58,7 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
                                            sizey = 1,
                                            opacity = 0.1,
                                            layer = "below"),
-                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
+                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.5)) %>%
     config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
   return(final_prod)
 }
