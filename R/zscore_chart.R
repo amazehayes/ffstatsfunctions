@@ -25,12 +25,7 @@ zscore_chart <- function(players,position,scoring,fwd,pfrplayers){
   playerdf2 <- playerdf %>% select(player,zscore,age,position)
   playerdf3 <- melt(playerdf2,c("age","zscore","position"))
   posdf <- df %>% filter(position == pos, !is.na(zscore))
-  colors = RColorBrewer::brewer.pal(max(length(all_players),3),"Set1")
-  if(length(colors) > length(all_players)){
-    colors <- colors[1:length(all_players)]
-  }
-  ggthemr::ggthemr("dust")
-  s <- ggplot(data = playerdf3,aes(x=age,y=zscore,col=value), color = colors) + geom_line(size=1.5) +
+  s <- ggplot(data = playerdf3,aes(x=age,y=zscore,col=value)) + geom_line(size=1.5) +
     geom_point(data = posdf,aes(x=age,y=zscore),color = "black") +
     labs(y='Z-Score',title = paste0("Z-Scores by Age for ",pos),x="Age") +
     theme(title = element_text(size=14), axis.title=element_text(size=20), legend.title=element_blank())

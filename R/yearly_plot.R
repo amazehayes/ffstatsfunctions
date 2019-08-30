@@ -26,10 +26,6 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
     base*round(x/base)
   }
   pmax <- mround(max(df[,5],na.rm = TRUE),5) + 5
-  colors = RColorBrewer::brewer.pal(3,"Set1")
-  colors = colors[1:length(players)]
-  # requires "ggthemer
-  ggthemr::ggthemr("dust")
   s = ggplot(df,aes(x=year,y=get(names(df)[5]),color=player)) +
     geom_point() +
     geom_line() +
@@ -37,7 +33,6 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
           axis.title=element_text(size=20),
           legend.title=element_blank()) +
     scale_y_reverse(limits=c(pmax,0)) +
-    scale_color_manual(values = colors) +
     labs(y='Position Finish',title = tt_p,x="Year")
 
   g <- plotly_build(s)
