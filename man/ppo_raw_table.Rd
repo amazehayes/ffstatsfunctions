@@ -22,6 +22,6 @@ datatable
 creates ppo raw table
 }
 \examples{
-ppo_raw_table(players,years,scoring,con,pfrplayers)
+ppo_raw_table(years,scoring,con,pfrplayers)
 
 }
