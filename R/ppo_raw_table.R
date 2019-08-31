@@ -9,20 +9,14 @@
 #'
 #' @return datatable
 #'
-#' @examples ppo_raw_table(players,years,scoring,con,pfrplayers)
+#' @examples ppo_raw_table(years,scoring,con,pfrplayers)
 #'
 #' @export
 
 ppo_raw_table <- function(years,scoring,con,pfrplayers){
-  players <- sort(c(players))
   scoring <- tolower(scoring)
   years <- years
   years2 <- paste(years,collapse = ",")
-  playerids <- c()
-  for(i in 1:length(players)){
-    id <- pfrplayers$player_id[pfrplayers$player2 == players[i]]
-    playerids <- c(playerids,id)
-  }
   v <- paste0("select year,player_id,player,position,rushatt,rushyards,rushtd,targets,receptions,recyards,rectd,ppr,halfppr,standard,sixpttd from finalweeklydata where position in ('RB','WR','TE') and year in (", years2,")")
   fwd <- dbGetQuery(con,v)
 
