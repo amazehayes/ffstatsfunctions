@@ -227,6 +227,11 @@ weekly_split <- function(fwd,player_pos_name, measure_vars, year_filter,
   avg_out[cnumber_out] <- cmean_out
   df_player_out[nrow(df_player_out)+1,] <- avg_out
 
+  df_player_in$year <- as.numeric(df_player_in$year)
+  df_player_in$week <- as.numeric(df_player_in$week)
+  df_player_out$year <- as.numeric(df_player_out$year)
+  df_player_out$week <- as.numeric(df_player_out$week)
+
   df_player_in <- df_player_in %>% arrange(year,week)
   df_player_out <- df_player_out %>% arrange(year,week)
 
