@@ -64,7 +64,7 @@ week_range <- function(stat,years,weeks,con){
     colnames(dfweeks_other)[6] <- "stat"
     dfweeks_other <- dfweeks_other %>% group_by(position) %>% mutate(posrank = rank(-stat, ties.method = "first"))
 
-    dfweeks <- merge(dfweeks,dfweeks_other,by = c("year","player_id","player","position"))
+    dfweeks <- merge(dfweeks,dfweeks_other,by = c("year","player_id","player","position"), all =TRUE)
     colnames(dfweeks)[5:10] <- c("games_in","stat_in","posrank_in","games_out","stat_out","posrank_out")
     dfweeks$games_total <- dfweeks$games_in + dfweeks$games_out
     dfweeks$stat_total <- dfweeks$stat_in + dfweeks$stat_out
