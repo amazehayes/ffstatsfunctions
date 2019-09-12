@@ -53,9 +53,21 @@ optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fix
 
   for(i in names(fixed_players)){
     if(sum(is.na(fixed_players[[i]])) == 0){
-      fixed_player_cost <- fixed_player_cost + sum(dat$cost[dat$player %in% fixed_players[[i]]])
-      fixed_player_dat <- rbind(dat[dat$player %in% fixed_players[[i]], ],fixed_player_dat)
-      dat <-dat[dat$player %nin% fixed_players[[i]], ]
+
+      fixed_player_inds <-
+        (dat$player %in% fixed_players[[i]]) & (dat$pos == i)
+
+
+      fixed_player_cost <-
+        fixed_player_cost + sum(dat$cost[fixed_player_inds])
+
+
+      fixed_player_dat <-
+        rbind(dat[fixed_player_inds, ], fixed_player_dat)
+
+      dat <-
+        dat[!fixed_player_inds, ]
+
       if(pos_count_max[[i]] == 1){
         dat <- dat[dat$pos %nin% i, ]
       }
@@ -63,12 +75,13 @@ optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fix
     }
   }
 
+
   budget <- budget_in - fixed_player_cost
   obj_fun <- matrix(dat$proj_pts , ncol = nrow(dat))
   constr <- matrix(dat$cost, ncol = nrow(dat))
 
   for(i in names(pos_count)){
-    if(pos_count[[i]] > 0){
+    if(pos_count[[i]] > 0 | pos_count_max[[i]] > 1){
       constr <- rbind(constr, matrix(dat$pos == i, ncol = nrow(dat)))
     }
     else{
