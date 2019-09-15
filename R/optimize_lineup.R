@@ -9,14 +9,14 @@
 #' @param wr_fixed WR to optimize around
 #' @param te_fixed TE to optimize around
 #' @param dst_fixed DST to optimize around
-#'
+#' @param remove_players list of positions with values that are vectors of players to remove
 #' @return datatable
 #'
 #' @examples optimize_lineup(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed, dst_fixed)
 #'
 #' @export
 
-optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed, dst_fixed){
+optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed, dst_fixed, remove_players){
 
   names_to_check <- c("position", "player", "cost", "projected_points", "keep")
   missing_names <- setdiff(names_to_check, names(dat))
@@ -30,6 +30,7 @@ optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fix
   pos_count <- list(QB=1,RB=2,WR=3,TE=1,DST=1)
   pos_count_max <- list(QB=1,RB=3,WR=4,TE=2,DST=1)
   constr_str <- list(QB='==',RB='==',WR='==',TE='==',DST='==')
+
 
   if(length(rb_fixed) == 0){
     rb_fixed <- NA
@@ -72,6 +73,17 @@ optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fix
         dat <- dat[dat$pos %nin% i, ]
       }
       pos_count[[i]] <- pos_count[[i]] - length(fixed_players[[i]])
+    }
+  }
+
+
+  ## remove players from remove_players list
+  ## we can do this w/ dplyr filter; should change the above to mimic this.
+  for(i in names(remove_players)){
+    if(!any(is.na(remove_players[[i]])) & !any(remove_players[[i]] %in% '')){
+      dat <-
+        dat %>%
+        filter((!player %in% remove_players[[i]] | pos != i))
     }
   }
 
