@@ -4,7 +4,8 @@
 \alias{get_dfs_platform_salaries}
 \title{DFS Platform Salary Data}
 \usage{
-get_dfs_platform_salaries(con, dfs_platform, platforms_list)
+get_dfs_platform_salaries(con, dfs_platform, platforms_list,
+  dfs_slate_day_time)
 }
 \arguments{
 \item{con}{RPostgres connection object pointed at the database.}
@@ -12,12 +13,15 @@ get_dfs_platform_salaries(con, dfs_platform, platforms_list)
 \item{dfs_platform}{DFS platform string: DraftKings, FandDuel, Yahoo!}
 
 \item{platforms_list}{list of DFS platform attributes: keys}
+
+\item{dfs_slate_day_time}{vector of day+times to filter data down to}
 }
 \description{
 function to pull DFS Platform Salary data
 }
 \examples{
 get_dfs_platform_salaries_for_opt('DrafKings',
- list(DraftKings=list(proj_points='dk_proj_points', salary='dksalary', id='dkid')))
+ list(DraftKings=list(proj_points='dk_proj_points', salary='dksalary', id='dkid')),
+ c('Sun 1:00PM', 'Sun 4:05PM'))
 
 }
