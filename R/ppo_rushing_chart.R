@@ -66,7 +66,7 @@ ppo_rushing_chart <- function(players,years,scoring,con,pfrplayers){
                                  "Rush Attempts: ", dfloop$rushatt, "<br>",
                                  "PPOpp: ", dfloop$rushPPO, "<br>")
   }
-  final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/amazehayes/ffstats_navbar/master/www/FFStats_BlackLogo_3.5x3.5.png",
+  final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZH5KMZITAUIGBIMDCK6HRIIG",
                                            xref = "paper",
                                            yref = "paper",
                                            x = 0,

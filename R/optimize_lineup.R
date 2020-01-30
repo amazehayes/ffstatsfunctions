@@ -9,14 +9,14 @@
 #' @param wr_fixed WR to optimize around
 #' @param te_fixed TE to optimize around
 #' @param dst_fixed DST to optimize around
-#' @param remove_players list of positions with values that are vectors of players to remove
+#'
 #' @return datatable
 #'
 #' @examples optimize_lineup(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed, dst_fixed)
 #'
 #' @export
 
-optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed, dst_fixed, remove_players){
+optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed, dst_fixed){
 
   names_to_check <- c("position", "player", "cost", "projected_points", "keep")
   missing_names <- setdiff(names_to_check, names(dat))
@@ -30,7 +30,6 @@ optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fix
   pos_count <- list(QB=1,RB=2,WR=3,TE=1,DST=1)
   pos_count_max <- list(QB=1,RB=3,WR=4,TE=2,DST=1)
   constr_str <- list(QB='==',RB='==',WR='==',TE='==',DST='==')
-
 
   if(length(rb_fixed) == 0){
     rb_fixed <- NA
@@ -54,21 +53,9 @@ optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fix
 
   for(i in names(fixed_players)){
     if(sum(is.na(fixed_players[[i]])) == 0){
-
-      fixed_player_inds <-
-        (dat$player %in% fixed_players[[i]]) & (dat$pos == i)
-
-
-      fixed_player_cost <-
-        fixed_player_cost + sum(dat$cost[fixed_player_inds])
-
-
-      fixed_player_dat <-
-        rbind(dat[fixed_player_inds, ], fixed_player_dat)
-
-      dat <-
-        dat[!fixed_player_inds, ]
-
+      fixed_player_cost <- fixed_player_cost + sum(dat$cost[dat$player %in% fixed_players[[i]]])
+      fixed_player_dat <- rbind(dat[dat$player %in% fixed_players[[i]], ],fixed_player_dat)
+      dat <-dat[dat$player %nin% fixed_players[[i]], ]
       if(pos_count_max[[i]] == 1){
         dat <- dat[dat$pos %nin% i, ]
       }
@@ -76,24 +63,12 @@ optimize_lineup <- function(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fix
     }
   }
 
-
-  ## remove players from remove_players list
-  ## we can do this w/ dplyr filter; should change the above to mimic this.
-  for(i in names(remove_players)){
-    if(!any(is.na(remove_players[[i]])) & !any(remove_players[[i]] %in% '')){
-      dat <-
-        dat %>%
-        filter((!player %in% remove_players[[i]] | pos != i))
-    }
-  }
-
-
   budget <- budget_in - fixed_player_cost
   obj_fun <- matrix(dat$proj_pts , ncol = nrow(dat))
   constr <- matrix(dat$cost, ncol = nrow(dat))
 
   for(i in names(pos_count)){
-    if(pos_count[[i]] > 0 | pos_count_max[[i]] > 1){
+    if(pos_count[[i]] > 0){
       constr <- rbind(constr, matrix(dat$pos == i, ncol = nrow(dat)))
     }
     else{
