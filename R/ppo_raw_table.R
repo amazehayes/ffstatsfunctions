@@ -17,7 +17,7 @@ ppo_raw_table <- function(years,scoring,con,pfrplayers){
   scoring <- tolower(scoring)
   years <- years
   years2 <- paste(years,collapse = ",")
-  v <- paste0("select year,player_id,player,position,rushatt,rushyards,rushtd,targets,receptions,recyards,rectd,ppr,halfppr,standard,sixpttd from finalweeklydata where position in ('RB','WR','TE') and year in (", years2,")")
+  v <- paste0("select year,player_id,player,position,rushatt,rushyards,rushtd,targets,receptions,recyards,rectd,ppr,halfppr,standard,sixpttd from finalweeklydata where year in (", years2,")")
   fwd <- dbGetQuery(con,v)
 
   positions <- unique(fwd %>% arrange(-year) %>% select(year,player_id,player,position))

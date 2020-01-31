@@ -11,7 +11,6 @@
 #' @export
 
 clean_names <- function(dat){
-  # Takes a data.frame, returns the same data frame with cleaned names
   old_names <- names(dat)
   new_names <- old_names %>%
     gsub("%", "percent", .) %>%
