@@ -69,11 +69,11 @@ ppo_receiving_chart <- function(players,years,scoring,con,pfrplayers){
   final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZH5KMZITAUIGBIMDCK6HRIIG",
                                            xref = "paper",
                                            yref = "paper",
-                                           x = 0,
-                                           y = 1,
-                                           sizex = 1,
-                                           sizey = 1,
-                                           opacity = 0.1,
+                                           x = 0.9,
+                                           y = 0.15,
+                                           sizex = 0.15,
+                                           sizey = 0.15,
+                                           opacity = 0.05,
                                            layer = "below"),
                              legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
     config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))

@@ -32,7 +32,7 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
     theme(title = element_text(size=14),
           axis.title=element_text(size=20),
           legend.title=element_blank()) +
-    scale_y_reverse(limits=c(pmax,0)) +
+    scale_y_reverse(limits=c(pmax,0)) + theme_classic() +
     labs(y='Position Finish',title = tt_p,x="Year")
 
   g <- plotly_build(s)
@@ -52,11 +52,11 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
   final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZH5KMZITAUIGBIMDCK6HRIIG",
                                            xref = "paper",
                                            yref = "paper",
-                                           x = 0,
-                                           y = 1,
-                                           sizex = 1,
-                                           sizey = 1,
-                                           opacity = 0.1,
+                                           x = 0.9,
+                                           y = 0.15,
+                                           sizex = 0.15,
+                                           sizey = 0.15,
+                                           opacity = 0.05,
                                            layer = "below"),
                              legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.5)) %>%
     config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
