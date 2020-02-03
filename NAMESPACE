@@ -3,7 +3,6 @@
 export(clean_names)
 export(coaching_table)
 export(create_title)
-export(get_dfs_platform_salaries)
 export(home_splits_chart)
 export(home_splits_table)
 export(mround)
