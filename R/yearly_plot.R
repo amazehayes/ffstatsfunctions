@@ -26,13 +26,19 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
     base*round(x/base)
   }
   pmax <- mround(max(df[,5],na.rm = TRUE),5) + 5
+
+  colorCount = length(unique(players))
+  getPalette = colorRampPalette(brewer.pal(colorCount, "Dark2"))
+
   s = ggplot(df,aes(x=year,y=get(names(df)[5]),color=player)) +
-    geom_point() +
-    geom_line() +
+    geom_point(size = 3) +
+    geom_line(size = 1.5) +
     theme(title = element_text(size=14),
           axis.title=element_text(size=20),
           legend.title=element_blank()) +
     scale_y_reverse(limits=c(pmax,0)) + theme_classic() +
+    scale_color_manual(values=getPalette(colorCount)) +
+    scale_x_discrete(limits = years) +
     labs(y='Position Finish',title = tt_p,x="Year")
 
   g <- plotly_build(s)
@@ -58,7 +64,7 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
                                            sizey = 0.15,
                                            opacity = 0.05,
                                            layer = "below"),
-                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.5)) %>%
+                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
     config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
   return(final_prod)
 }

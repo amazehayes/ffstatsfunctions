@@ -57,9 +57,14 @@ posrank_chart <- function(players,years,scoring,con,pfrplayers){
     finishes[finishes$player_id == playerids[i] & finishes$Type == 2,3:5] <- loopv
   }
 
+  colorCount = length(unique(players))
+  getPalette = colorRampPalette(brewer.pal(colorCount, "Dark2"))
+
   p <- ggplot(finishes, aes(x = Bin, y = n, fill = player)) + geom_bar(stat = "identity", position=position_dodge()) +
     labs(title = paste0("Weekly Position Finishes")) + xlab("Position Rank Bin") + ylab("Number of Weeks") +
     scale_color_manual(labels = unique(finishes$player)) +
+    theme_classic() +
+    scale_color_manual(values=getPalette(colorCount)) +
     ylim(0,mround(max(finishes$n),5)+5)
   g <- plotly_build(p)
   for(i in 1:length(players)){

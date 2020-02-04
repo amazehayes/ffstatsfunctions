@@ -40,10 +40,14 @@ ppg_chart <- function(players,years,scoring,con,pfrplayers){
   df$year <- as.factor(as.character(df$year))
   df$year <- factor(df$year,levels = c(years))
 
+  colorCount = length(unique(players))
+  getPalette = colorRampPalette(brewer.pal(colorCount, "Dark2"))
+
   p <- ggplot(df, aes(x = year, y = avg, fill = player)) + geom_bar(stat = "identity", position=position_dodge()) +
     labs(title = paste0("Average Fantasy Points Per Game")) + xlab("Year") + ylab("Fantasy Points")  +
     geom_errorbar(aes(ymin=Lower, ymax=Upper), col = "black", width=.2, position=position_dodge(.9)) +
-    scale_color_manual(values = c(colors), labels = unique(df$player)) +
+    scale_color_manual(values=getPalette(colorCount), labels = unique(df$player)) + theme_classic() +
+    scale_x_discrete(limits = years) +
     ylim(0,mround(max(df$Upper),5)+5)
   g <- plotly_build(p)
   for(i in 1:length(players)){
