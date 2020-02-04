@@ -60,7 +60,7 @@ ppo_receiving_chart <- function(players,years,scoring,con,pfrplayers){
   p <- ggplot(df,aes(x = year, y = recPPO, color = player)) + geom_line(stat = "identity") + geom_point() +
     ylab("Receiving Points Per Opportunity") + xlab("Year") +
     scale_color_manual(values=getPalette(colorCount)) +
-    scale_x_discrete(limits = years) +
+    scale_x_discrete(limits = years) + theme_classic() +
     labs(title = paste0("Receiving Points Per Opportunity"))
   g <- ggplotly(p)
   for(i in 1:length(players)){
