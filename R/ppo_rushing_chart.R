@@ -57,10 +57,10 @@ ppo_rushing_chart <- function(players,years,scoring,con,pfrplayers){
   colorCount = length(unique(players))
   getPalette = colorRampPalette(brewer.pal(colorCount, "Dark2"))
 
-  p <- ggplot(df,aes(x = year, y = rushPPO, color = player)) + geom_line(stat = "identity") + geom_point() +
+  p <- ggplot(df,aes(x = year, y = rushPPO, color = player)) + geom_line(stat = "identity", size = 1.5) + geom_point(size = 3) +
     ylab("Rushing Points Per Opportunity") + xlab("Year") +
     scale_color_manual(values=getPalette(colorCount)) +
-    scale_x_discrete(limits = years) + theme_classic() +
+    scale_x_discrete(limits = years) +
     labs(title = paste0("Rushing Points Per Opportunity"))
   g <- ggplotly(p)
   for(i in 1:length(players)){

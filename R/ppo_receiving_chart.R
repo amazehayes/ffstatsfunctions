@@ -57,7 +57,7 @@ ppo_receiving_chart <- function(players,years,scoring,con,pfrplayers){
   colorCount = length(unique(players))
   getPalette = colorRampPalette(brewer.pal(colorCount, "Dark2"))
 
-  p <- ggplot(df,aes(x = year, y = recPPO, color = player)) + geom_line(stat = "identity") + geom_point() +
+  p <- ggplot(df,aes(x = year, y = recPPO, color = player)) + geom_line(stat = "identity", size = 1.5) + geom_point(size = 3) +
     ylab("Receiving Points Per Opportunity") + xlab("Year") +
     scale_color_manual(values=getPalette(colorCount)) +
     scale_x_discrete(limits = years) + theme_classic() +
