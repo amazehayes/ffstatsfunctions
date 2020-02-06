@@ -71,7 +71,7 @@ ppo_receiving_chart <- function(players,years,scoring,con,pfrplayers){
                                  "Targets: ", dfloop$targets, "<br>",
                                  "PPOpp: ", dfloop$recPPO, "<br>")
   }
-  final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZH5KMZITAUIGBIMDCK6HRIIG",
+  final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZE7YUTUT4CT3XICYQK6IXGJY",
                                            xref = "paper",
                                            yref = "paper",
                                            x = 0.9,
