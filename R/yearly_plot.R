@@ -15,7 +15,7 @@
 #' @export
 
 yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
-  players <- c(players)
+  players <- sort(c(players))
   years <- years
   scoring <- scoring
   tt_p = paste("Yearly Finishes for", paste(players, collapse = " & "))

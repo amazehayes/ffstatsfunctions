@@ -20,10 +20,10 @@ ppg_chart <- function(players,years,scoring,con,pfrplayers){
   years2 <- paste(years, collapse = ",")
   scoring <- tolower(scoring)
   v <- paste0("select year,player,week,position,player_id,",paste0(scoring),"
-              from finalweeklydata where year in (", years2,")")
+            from finalweeklydata where year in (", years2,")")
   df <- dbGetQuery(con, v)
   colnames(df)[6] <- "FP"
-  players <- c(players)
+  players <- sort(c(players))
   playerids <- c()
   for(i in 1:length(players)){
     id <- pfrplayers$player_id[pfrplayers$player2 == players[i]]
@@ -75,6 +75,8 @@ ppg_chart <- function(players,years,scoring,con,pfrplayers){
                                            layer = "below"),
                              legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
     config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
+
+  final_prod
 
   return(final_prod)
 

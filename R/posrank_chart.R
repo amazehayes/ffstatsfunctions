@@ -19,10 +19,10 @@ posrank_chart <- function(players,years,scoring,con,pfrplayers){
   years2 <- paste(years, collapse = ",")
   scoring <- tolower(scoring)
   v <- paste0("select year,player,week,position,player_id,",paste0(scoring,"_pr"),"
-              from finalweeklydata where year in (", years2,")")
+            from finalweeklydata where year in (", years2,")")
   df <- dbGetQuery(con, v)
   colnames(df)[6] <- "PR"
-  players <- c(players)
+  players <- sort(c(players))
   playerids <- c()
   for(i in 1:length(players)){
     id <- pfrplayers$player_id[pfrplayers$player2 == players[i]]
@@ -56,6 +56,7 @@ posrank_chart <- function(players,years,scoring,con,pfrplayers){
     loopv <- finishes2[finishes2$player_id == playerids[i],3:5]
     finishes[finishes$player_id == playerids[i] & finishes$Type == 2,3:5] <- loopv
   }
+  finishes <- finishes %>% arrange(player)
 
   colorCount = length(unique(players))
   getPalette = colorRampPalette(brewer.pal(colorCount, "Dark2"))
