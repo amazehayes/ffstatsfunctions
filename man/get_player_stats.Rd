@@ -4,7 +4,7 @@
 \alias{get_player_stats}
 \title{College Player Stats}
 \usage{
-get_player_stats(player, con, datatype)
+get_player_stats(player, con, datatype, combinedf)
 }
 \arguments{
 \item{player}{player names}
@@ -22,6 +22,6 @@ dataframe
 generates college stats table
 }
 \examples{
-get_player_stats(player, con, datatype)
+get_player_stats(player, con, datatype, combinedf)
 
 }
