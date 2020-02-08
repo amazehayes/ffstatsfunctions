@@ -13,10 +13,10 @@
 #'
 #' @export
 
-get_player_stats <- function(player, con, datatype, combinedf){
+get_player_stats <- function(player, con, datatype){
   players <- player
   pos <- combinedf$Position[combinedf$Player2 == players]
-  pid <- combinedf %>% filter(Player == players) %>% select(College_ID)
+  pid <- combinedf %>% filter(Player2 == players) %>% select(College_ID)
   pid <- pid$College_ID
 
   if(pos == "QB"){
@@ -75,8 +75,7 @@ get_player_stats <- function(player, con, datatype, combinedf){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
       summarise_all(sum) %>% arrange(-year) %>% mutate(ms.rushatt = round(rushatt/rushatt_tt*100,2),
                                                        ms.rushyards = round(rushyards/rushyards_tt*100,2)) %>%
-      ungroup() %>%
-      select(year,school,yearcolumns,ms.rushatt,ms.rushyards)
+      select(year,player,school,yearcolumns,ms.rushatt,ms.rushyards)
   }
   if(pos == "RB"){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
@@ -84,15 +83,13 @@ get_player_stats <- function(player, con, datatype, combinedf){
                                                        ms.rushyards = round(rushyards/rushyards_tt*100,2),
                                                        ms.receptions = round(receptions/receptions_tt*100,2),
                                                        ms.recyards = round(recyards/recyards_tt*100,2)) %>%
-      ungroup() %>%
-      select(year,school,yearcolumns,ms.rushatt,ms.rushyards,ms.receptions,ms.recyards)
+      select(year,player,school,yearcolumns,ms.rushatt,ms.rushyards,ms.receptions,ms.recyards)
   }
   if(pos == "WR" | pos == "TE"){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
       summarise_all(sum) %>% arrange(-year) %>% mutate(ms.receptions = round(receptions/receptions_tt*100,2),
                                                        ms.recyards = round(recyards/recyards_tt*100,2)) %>%
-      ungroup() %>%
-      select(year,school,yearcolumns,ms.receptions,ms.recyards)
+      select(year,player,school,yearcolumns,ms.receptions,ms.recyards)
   }
   if(pos != "QB" & pos != "RB" & pos != "WR" & pos != "TE"){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
@@ -100,8 +97,7 @@ get_player_stats <- function(player, con, datatype, combinedf){
                                                        ms.sacks = round(sacks/sacks_tt*100,2),
                                                        ms.int = round(int/int_tt*100,2),
                                                        ms.forcedfumble = round(forcedfumble/forcedfumble_tt*100,2)) %>%
-      ungroup() %>%
-      select(year,school,yearcolumns,ms.tackles,ms.sacks,ms.int,ms.forcedfumble)
+      select(year,player,school,yearcolumns,ms.tackles,ms.sacks,ms.int,ms.forcedfumble)
   }
 
   if(datatype == "gamelogs"){
