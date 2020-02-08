@@ -43,7 +43,7 @@ get_player_stats <- function(player, con, datatype, combinedf){
     columns <- c("player","id","gameno","year","date","school","home","opponent","win","tackles","assisttackles","totaltackles",
                  "tfl","sacks","defint","intyards","inttd","passdefensed","fumblerec","fumbleyards","fumbletd","forcedfumble")
     yearcolumns <- c("tackles","assisttackles","totaltackles","tfl","sacks","defint","intyards","inttd",
-                     "passdefensed","fumblerec","fumbleyards","fumbletd","forcedfumble")
+                     "passdefensed","forcedfumble","fumblerec","fumbleyards","fumbletd")
     statcolumns <- c("tackles","sacks","int","forcedfumble")
     teamcolumns <- c("tackles_tt","sacks_tt","int_tt","forcedfumble_tt")
   }
@@ -75,7 +75,10 @@ get_player_stats <- function(player, con, datatype, combinedf){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
       summarise_all(sum) %>% arrange(-year) %>% mutate(ms.rushatt = round(rushatt/rushatt_tt*100,2),
                                                        ms.rushyards = round(rushyards/rushyards_tt*100,2)) %>%
-      select(year,player,school,yearcolumns,ms.rushatt,ms.rushyards)
+      ungroup() %>%
+      select(year,school,yearcolumns,ms.rushatt,ms.rushyards)
+    colnames(yearstats) <- c("Year","School","PassComp","PassAtt","PassTD","INT","RushAtt","RushYards","RushTD",
+                             "MS.RushAtt","MS.RushYards")
   }
   if(pos == "RB"){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
@@ -83,13 +86,18 @@ get_player_stats <- function(player, con, datatype, combinedf){
                                                        ms.rushyards = round(rushyards/rushyards_tt*100,2),
                                                        ms.receptions = round(receptions/receptions_tt*100,2),
                                                        ms.recyards = round(recyards/recyards_tt*100,2)) %>%
-      select(year,player,school,yearcolumns,ms.rushatt,ms.rushyards,ms.receptions,ms.recyards)
+      ungroup() %>%
+      select(year,school,yearcolumns,ms.rushatt,ms.rushyards,ms.receptions,ms.recyards)
+    colnames(yearstats) <- c("Year","School","RushAtt","RushYards","RushTD","Receptions","RecYards","RecTD",
+                             "MS.RushAtt","MS.RushYards","MS.Receptions","MS.RecYards")
   }
   if(pos == "WR" | pos == "TE"){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
       summarise_all(sum) %>% arrange(-year) %>% mutate(ms.receptions = round(receptions/receptions_tt*100,2),
                                                        ms.recyards = round(recyards/recyards_tt*100,2)) %>%
-      select(year,player,school,yearcolumns,ms.receptions,ms.recyards)
+      ungroup() %>%
+      select(year,school,yearcolumns,ms.receptions,ms.recyards)
+    colnames(yearstats) <- c("Year","School","Receptions","RecYards","RecTD","MS.Receptions","MS.RecYards")
   }
   if(pos != "QB" & pos != "RB" & pos != "WR" & pos != "TE"){
     yearstats <- playercfblogs %>% select(year,player,school,yearcolumns,teamcolumns) %>% group_by(year,player,school) %>%
@@ -97,8 +105,14 @@ get_player_stats <- function(player, con, datatype, combinedf){
                                                        ms.sacks = round(sacks/sacks_tt*100,2),
                                                        ms.int = round(int/int_tt*100,2),
                                                        ms.forcedfumble = round(forcedfumble/forcedfumble_tt*100,2)) %>%
-      select(year,player,school,yearcolumns,ms.tackles,ms.sacks,ms.int,ms.forcedfumble)
+      ungroup() %>%
+      select(year,school,yearcolumns,ms.tackles,ms.sacks,ms.int,ms.forcedfumble)
+    colnames(yearstats) <- c("Year","School","Tackles","AssistTackles","TotalTackles","TFL","Sacks","DefINT","INTYards","INTTD",
+                             "PD","FF","FR","FumbleYards","FumbleTD","MS.Tackles","MS.Sacks","MS.INT","MS.FF")
   }
+
+  yearstats$age <- round(age_calc(dob, as.Date(paste0(yearstats$year,"-08-01")), units = "years"),1)
+  yearstats <- yearstats[,c(1,2,ncol(yearstats),3:(ncol(yearstats)-1))]
 
   if(datatype == "gamelogs"){
     return(playercfblogs)
