@@ -4,7 +4,7 @@
 \alias{get_player_stats}
 \title{College Player Stats}
 \usage{
-get_player_stats(player, con, datatype, combinedf)
+get_player_stats(player, con, datatype)
 }
 \arguments{
 \item{player}{player names}
