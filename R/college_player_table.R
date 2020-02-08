@@ -112,7 +112,7 @@ get_player_stats <- function(player, con, datatype, combinedf){
                              "PD","FF","FR","FumbleYards","FumbleTD","MS.Tackles","MS.Sacks","MS.INT","MS.FF")
   }
 
-  yearstats$age <- round(age_calc(dob, as.Date(paste0(yearstats$year,"-08-01")), units = "years"),1)
+  yearstats$Age <- round(age_calc(dob, as.Date(paste0(yearstats$Year,"-08-01")), units = "years"),1)
   yearstats <- yearstats[,c(1,2,ncol(yearstats),3:(ncol(yearstats)-1))]
 
   if(datatype == "gamelogs"){
