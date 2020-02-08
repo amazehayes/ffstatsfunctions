@@ -5,6 +5,7 @@
 #' @param player player names
 #' @param con DB connection
 #' @param datatype gamelogs or year
+#' @param combinedf table of metrics
 #'
 #' @return dataframe
 #'
@@ -12,7 +13,7 @@
 #'
 #' @export
 
-get_player_stats <- function(player, con, datatype){
+get_player_stats <- function(player, con, datatype, combinedf){
   players <- player
   pos <- combinedf$Position[combinedf$Player2 == players]
   pid <- combinedf %>% filter(Player == players) %>% select(College_ID)
