@@ -9,11 +9,11 @@
 #'
 #' @return dataframe
 #'
-#' @examples get_player_stats(player, con, datatype)
+#' @examples get_player_stats(player, con, datatype, combinedf)
 #'
 #' @export
 
-get_player_stats <- function(player, con, datatype){
+get_player_stats <- function(player, con, datatype, combinedf){
   players <- player
   pos <- combinedf$Position[combinedf$Player2 == players]
   pid <- combinedf %>% filter(Player2 == players) %>% select(College_ID)
