@@ -5,7 +5,7 @@
 \title{Lineup Optimizer}
 \usage{
 optimize_lineup(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed,
-  dst_fixed, remove_players)
+  dst_fixed)
 }
 \arguments{
 \item{dat}{DFS datatable}
@@ -21,8 +21,6 @@ optimize_lineup(dat, budget_in, qb_fixed, rb_fixed, wr_fixed, te_fixed,
 \item{te_fixed}{TE to optimize around}
 
 \item{dst_fixed}{DST to optimize around}
-
-\item{remove_players}{list of positions with values that are vectors of players to remove}
 }
 \value{
 datatable
