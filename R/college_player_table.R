@@ -16,6 +16,7 @@
 get_player_stats <- function(player, con, datatype, combinedf){
   players <- player
   pos <- combinedf$Position[combinedf$Player2 == players]
+  dob <- as.Date(combinedf$DOB[combinedf$Player2 == players])
   pid <- combinedf %>% filter(Player2 == players) %>% select(College_ID)
   pid <- pid$College_ID
 
