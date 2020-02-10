@@ -28,7 +28,7 @@ points_table <- function(position,years,con,pfrplayers,minpassatt,minrushattQB,m
                 from finalweeklydata where year in (",years,") and position = 'QB'")
     fwd <- dbGetQuery(con,v)
     fwd$fpnew <- (0.04*fwd$passyards) + (4*fwd$passtd) + (0.1*fwd$rushyards) + (6*fwd$rushtd)
-    minRA <- minrushattRB
+    minRA <- minrushattQB
     minPA <- minpassatt
 
     df <- fwd %>% group_by(player_id,player) %>% summarise_all(sum) %>% filter(rushatt >= minRA, passatt >= minPA) %>% ungroup() %>%
