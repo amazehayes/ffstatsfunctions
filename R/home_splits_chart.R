@@ -45,10 +45,13 @@ home_splits_chart <- function(players,years,scoring,fwd,pfrplayers){
   df$home <- gsub(0,"Away",df$home)
   df$home <- gsub(1,"Home",df$home)
 
-  s <- ggplot(df,aes(x = player, y = average, fill = as.factor(home))) +
-    geom_bar(position = "dodge", stat = "identity") +
+  colorCount = 2
+  getPalette = colorRampPalette(brewer.pal(colorCount, "Dark2"))
+
+  s <- ggplot(df,aes(x = player, y = average, fill = home)) +
+    geom_bar(position = "dodge", stat = "identity") + theme_classic() +
     labs(title = paste0("Home/Road Splits")) + xlab("Players") + ylab("Average") +
-    ylim(0,mround(max(df$average),5)+5)
+    ylim(0,mround(max(df$average),5)+5) + scale_fill_manual(values=getPalette(colorCount), labels = c("Away","Home"))
   g <- plotly_build(s)
   for(i in 0:1){
     df$home <- gsub("Away",0,df$home)
@@ -60,11 +63,11 @@ home_splits_chart <- function(players,years,scoring,fwd,pfrplayers){
                                   "Points:", dfloop$FP, "<br>",
                                   "Average:", dfloop$average, "<br>")
   }
-  final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/amazehayes/ffstats_navbar/master/www/FFStats_BlackLogo_3.5x3.5.png",
+  final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZE7YUTUT4CT3XICYQK6IXGJY",
                                            xref = "paper",
                                            yref = "paper",
-                                           x = 0.01,
-                                           y = 1,
+                                           x = 0.83,
+                                           y = 1.08,
                                            sizex = 0.2,
                                            sizey = 0.2,
                                            opacity = 0.1,
