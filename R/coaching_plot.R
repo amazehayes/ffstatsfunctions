@@ -86,13 +86,13 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
 
     if(s == "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = QB1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
-        geom_point(size = 3, color = getPalette(2)[1]) +
+        geom_point(size = 3, color = getPalette(2)[1]) + scale_x_discrete(limits = plotdf$year) +
         scale_y_reverse() + ylab(s) + xlab("Year") + labs(title = paste(coachA,"QB1",s)) + theme_classic() +
         geom_hline(yintercept = mean(plotdf$QB1), color = "black", linetype = "dashed", size = 1)
     }
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RQB1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
-        geom_point(size = 3, color = getPalette(2)[1]) +
+        geom_point(size = 3, color = getPalette(2)[1]) + scale_x_discrete(limits = plotdf$year) +
         ylab(s) + xlab("Year") + labs(title = paste(coachA,"QB1",s)) + theme_classic() +
         geom_hline(yintercept = mean(plotdf$RQB1), color = "black", linetype = "dashed", size = 1)
     }
@@ -182,7 +182,8 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_hline(yintercept = mean(plotdf$RB1), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = RB2), size = 1.5, color = getPalette(2)[2]) +
         geom_point(aes(x = year, y = RB2), size = 3, color = getPalette(2)[2]) +
-        geom_hline(yintercept = mean(plotdf$RB2), color = "black", linetype = "dashed", size = 1) + scale_y_reverse()
+        geom_hline(yintercept = mean(plotdf$RB2), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
+        scale_x_discrete(limits = plotdf$year)
     }
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RRB1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
@@ -191,7 +192,8 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_hline(yintercept = mean(plotdf$RRB1), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = RRB2), size = 1.5, color = getPalette(2)[2]) +
         geom_point(aes(x = year, y = RRB2), size = 3, color = getPalette(2)[2]) +
-        geom_hline(yintercept = mean(plotdf$RRB2), color = "black", linetype = "dashed", size = 1)
+        geom_hline(yintercept = mean(plotdf$RRB2), color = "black", linetype = "dashed", size = 1) +
+        scale_x_discrete(limits = plotdf$year)
     }
     g <- ggplotly(p)
     g$x$data[[1]]$text <- paste0("Coach: ", coachA, "<br>",
@@ -292,7 +294,8 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_hline(yintercept = mean(plotdf$WR2), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = WR3), size = 1.5, color = getPalette(3)[3]) +
         geom_point(aes(x = year, y = WR3), size = 3, color = getPalette(3)[3]) +
-        geom_hline(yintercept = mean(plotdf$WR3), color = "black", linetype = "dashed", size = 1) + scale_y_reverse()
+        geom_hline(yintercept = mean(plotdf$WR3), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
+        scale_x_discrete(limits = plotdf$year)
     }
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RWR1)) + geom_line(size = 1.5, color = getPalette(3)[1]) +
@@ -304,7 +307,8 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_hline(yintercept = mean(plotdf$RWR2), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = RWR3), size = 1.5, color = getPalette(3)[3]) +
         geom_point(aes(x = year, y = RWR3), size = 3, color = getPalette(3)[3]) +
-        geom_hline(yintercept = mean(plotdf$RWR3), color = "black", linetype = "dashed", size = 1)
+        geom_hline(yintercept = mean(plotdf$RWR3), color = "black", linetype = "dashed", size = 1) +
+        scale_x_discrete(limits = plotdf$year)
     }
     g <- ggplotly(p)
     g$x$data[[1]]$text <- paste0("Coach: ", coachA, "<br>",
@@ -411,7 +415,8 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_hline(yintercept = mean(plotdf$TE1), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = TE2), size = 1.5, color = getPalette(2)[2]) +
         geom_point(aes(x = year, y = TE2), size = 3, color = getPalette(2)[2]) +
-        geom_hline(yintercept = mean(plotdf$TE2), color = "black", linetype = "dashed", size = 1) + scale_y_reverse()
+        geom_hline(yintercept = mean(plotdf$TE2), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
+        scale_x_discrete(limits = plotdf$year)
     }
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RTE1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
@@ -420,7 +425,8 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_hline(yintercept = mean(plotdf$RTE1), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = RTE2), size = 1.5, color = getPalette(2)[2]) +
         geom_point(aes(x = year, y = RTE2), size = 3, color = getPalette(2)[2]) +
-        geom_hline(yintercept = mean(plotdf$RTE2), color = "black", linetype = "dashed", size = 1)
+        geom_hline(yintercept = mean(plotdf$RTE2), color = "black", linetype = "dashed", size = 1) +
+        scale_x_discrete(limits = plotdf$year)
     }
     g <- ggplotly(p)
     g$x$data[[1]]$text <- paste0("Coach: ", coachA, "<br>",
