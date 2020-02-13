@@ -101,7 +101,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: QB1", "<br>",
                                  "Player: ", plotdf$PQB1, "<br>",
-                                 s1,": ", plotdf$RTE2, "<br>",
+                                 s1,": ", plotdf$RQB1, "<br>",
                                  s1," Rank: ", plotdf$QB1, "<br>")
     g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: QB1", "<br>",
@@ -200,13 +200,13 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: RB1", "<br>",
                                  "Player: ", plotdf$PRB1, "<br>",
-                                 s1,": ", plotdf$RTE2, "<br>",
+                                 s1,": ", plotdf$RRB1, "<br>",
                                  s1," Rank: ", plotdf$RB1, "<br>")
     g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: RB2", "<br>",
                                  "Player: ", plotdf$PRB2, "<br>",
-                                 s1,": ", plotdf$RTE2, "<br>",
+                                 s1,": ", plotdf$RRB2, "<br>",
                                  s1," Rank: ", plotdf$RB2, "<br>")
     g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: RB1", "<br>",
@@ -315,19 +315,19 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: WR1", "<br>",
                                  "Player: ", plotdf$PWR1, "<br>",
-                                 s1,": ", plotdf$RTE2, "<br>",
+                                 s1,": ", plotdf$RWR1, "<br>",
                                  s1," Rank: ", plotdf$WR1, "<br>")
     g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: WR2", "<br>",
                                  "Player: ", plotdf$PWR2, "<br>",
-                                 s1,": ", plotdf$RTE2, "<br>",
+                                 s1,": ", plotdf$RWR2, "<br>",
                                  s1," Rank: ", plotdf$WR2, "<br>")
     g$x$data[[5]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: WR3", "<br>",
                                  "Player: ", plotdf$PWR3, "<br>",
-                                 s1,": ", plotdf$RTE2, "<br>",
+                                 s1,": ", plotdf$RWR3, "<br>",
                                  s1," Rank: ", plotdf$WR3, "<br>")
     g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: WR1", "<br>",
