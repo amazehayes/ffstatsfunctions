@@ -64,7 +64,7 @@ ppg_chart <- function(players,years,scoring,con,pfrplayers){
     dfloop <- df %>% filter(player == players[i])
     g$x$data[[i]]$name <- paste0(dfloop$player)
   }
-  final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZE7YUTUT4CT3XICYQK6IXGJY",
+  final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZGUMTTCLNWX5ZK727S6KHA26",
                                            xref = "paper",
                                            yref = "paper",
                                            x = 0.01,
@@ -75,8 +75,6 @@ ppg_chart <- function(players,years,scoring,con,pfrplayers){
                                            layer = "below"),
                              legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
     config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
-
-  final_prod
 
   return(final_prod)
 

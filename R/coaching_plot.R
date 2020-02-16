@@ -341,7 +341,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
                                  "Position: WR3", "<br>",
                                  "Stat: ", s, "<br>",
                                  "Average: ",round(mean(plotdf$RWR3),2), "<br>")
-    final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZE7YUTUT4CT3XICYQK6IXGJY",
+    final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZGUMTTCLNWX5ZK727S6KHA26",
                                              xref = "paper",
                                              yref = "paper",
                                              x = 0.87,
