@@ -21,11 +21,12 @@
 
 points_table <- function(position,years,con,pfrplayers,minpassatt,minrushattQB,minrushattRB,mintargetRB,mintargetWR,mintargetTE){
   years <- years
+  years2 <- paste(years,collapse = ",")
   p <- position
 
   if(p == "QB"){
     v <- paste0("select player_id,player,passatt,passyards,passtd,rushatt,rushyards,rushtd,ppr
-                from finalweeklydata where year in (",years,") and position = 'QB'")
+                from finalweeklydata where year in (",years2,") and position = 'QB'")
     fwd <- dbGetQuery(con,v)
     fwd$fpnew <- (0.04*fwd$passyards) + (4*fwd$passtd) + (0.1*fwd$rushyards) + (6*fwd$rushtd)
     minRA <- minrushattQB
@@ -48,7 +49,7 @@ points_table <- function(position,years,con,pfrplayers,minpassatt,minrushattQB,m
 
   if(p == "RB"){
     v <- paste0("select player_id,player,rushatt,rushyards,rushtd,targets,receptions,recyards,rectd,ppr
-                from finalweeklydata where year in (",years,") and position = 'RB'")
+                from finalweeklydata where year in (",years2,") and position = 'RB'")
     fwd <- dbGetQuery(con,v)
     fwd$fpnew <- (0.1*fwd$rushyards) + (6*fwd$rushtd) + (0.1*fwd$recyards) + (6*fwd$rectd) + fwd$receptions
     minRA <- minrushattRB
@@ -73,7 +74,7 @@ points_table <- function(position,years,con,pfrplayers,minpassatt,minrushattQB,m
 
   if(p == "WR"){
     v <- paste0("select player_id,player,targets,receptions,recyards,rectd,ppr
-                from finalweeklydata where year in (",years,") and position = 'WR'")
+                from finalweeklydata where year in (",years2,") and position = 'WR'")
     fwd <- dbGetQuery(con,v)
     fwd$fpnew <- (0.1*fwd$recyards) + (6*fwd$rectd) + fwd$receptions
     minT <- mintargetWR
@@ -92,7 +93,7 @@ points_table <- function(position,years,con,pfrplayers,minpassatt,minrushattQB,m
 
   if(p == "TE"){
     v <- paste0("select player_id,player,targets,receptions,recyards,rectd,ppr
-                from finalweeklydata where year in (",years,") and position = 'TE'")
+                from finalweeklydata where year in (",years2,") and position = 'TE'")
     fwd <- dbGetQuery(con,v)
     fwd$fpnew <- (0.1*fwd$recyards) + (6*fwd$rectd) + fwd$receptions
     minT <- mintargetTE
