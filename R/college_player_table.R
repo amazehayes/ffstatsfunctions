@@ -16,7 +16,7 @@
 get_player_stats <- function(player, con, datatype, combinedf){
   players <- player
   pos <- combinedf$Position[combinedf$Player2 == players]
-  dob <- as.Date(combinedf$DOB[combinedf$Player2 == players])
+  dob <- as.Date.character(combinedf$DOB[combinedf$Player2 == players], format = "%m/%d/%Y")
   pid <- combinedf %>% filter(Player2 == players) %>% select(College_ID)
   pid <- pid$College_ID
 
@@ -112,7 +112,7 @@ get_player_stats <- function(player, con, datatype, combinedf){
                              "PD","FF","FR","FumbleYards","FumbleTD","MS.Tackles","MS.Sacks","MS.INT","MS.FF")
   }
 
-  yearstats$Age <- round(age_calc(as.Date.character(dob,format="%m/%d/%Y"), as.Date(paste0(yearstats$Year,"-08-01"), format="%m/%d/%Y"), units = "years"),1)
+  yearstats$Age <- round(age_calc(dob, as.Date.character(paste0(yearstats$Year,"-08-01")), units = "years"),1)
   yearstats <- yearstats[,c(1,2,ncol(yearstats),3:(ncol(yearstats)-1))]
 
   if(datatype == "gamelogs"){
