@@ -288,7 +288,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
 
     if(s == "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = WR1)) + geom_line(size = 1.5, aes(color = "WR1")) +
-        geom_point(size = 3, color = getPalette(2)[1]) +
+        geom_point(size = 3, color = getPalette(3)[1]) +
         ylab(s) + xlab("Year") + theme_classic() + labs(title = paste(coachA,"WR1 & WR2 & WR3",s)) +
         geom_hline(yintercept = mean(plotdf$WR1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = WR2, color = "WR2"), size = 1.5) +
@@ -298,7 +298,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_point(aes(x = year, y = WR3), size = 3, color = getPalette(3)[3]) +
         geom_hline(yintercept = mean(plotdf$WR3, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
         scale_x_discrete(limits = plotdf$year) +
-        scale_color_manual(name = "Legend", values = c(WR1 = getPalette(2)[1], WR2 = getPalette(2)[2], WR3 = getPalette(3)[3]),
+        scale_color_manual(name = "Legend", values = c(WR1 = getPalette(3)[1], WR2 = getPalette(3)[2], WR3 = getPalette(3)[3]),
                            labels = c("WR1","WR2","WR3"))
     }
     if(s != "Fantasy Rank"){
@@ -313,7 +313,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_point(aes(x = year, y = RWR3), size = 3, color = getPalette(3)[3]) +
         geom_hline(yintercept = mean(plotdf$RWR3, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
         scale_x_discrete(limits = plotdf$year) +
-        scale_color_manual(name = "Legend", values = c(WR1 = getPalette(2)[1], WR2 = getPalette(2)[2], WR3 = getPalette(3)[3]),
+        scale_color_manual(name = "Legend", values = c(WR1 = getPalette(3)[1], WR2 = getPalette(3)[2], WR3 = getPalette(3)[3]),
                            labels = c("WR1","WR2","WR3"))
     }
     g <- ggplotly(p)
