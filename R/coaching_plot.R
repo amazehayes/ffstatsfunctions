@@ -198,23 +198,23 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         scale_color_manual(name = "Legend", values = c(RB1 = getPalette(2)[1], RB2 = getPalette(2)[2]), labels = c("RB1","RB2"))
     }
     g <- ggplotly(p)
-    g$x$data[[1]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: RB1", "<br>",
                                  "Player: ", plotdf$PRB1, "<br>",
                                  s1,": ", plotdf$RRB1, "<br>",
                                  s1," Rank: ", plotdf$RB1, "<br>")
-    g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[5]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: RB2", "<br>",
                                  "Player: ", plotdf$PRB2, "<br>",
                                  s1,": ", plotdf$RRB2, "<br>",
                                  s1," Rank: ", plotdf$RB2, "<br>")
-    g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: RB1", "<br>",
                                  "Stat: ", s1, "<br>",
                                  "Average: ",round(mean(plotdf$RRB1, na.rm = TRUE),2), "<br>")
-    g$x$data[[4]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[6]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: RB2", "<br>",
                                  "Stat: ", s1, "<br>",
                                  "Average: ",round(mean(plotdf$RRB2, na.rm = TRUE),2), "<br>")
@@ -317,33 +317,33 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
                            labels = c("WR1","WR2","WR3"))
     }
     g <- ggplotly(p)
-    g$x$data[[1]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: WR1", "<br>",
                                  "Player: ", plotdf$PWR1, "<br>",
                                  s1,": ", plotdf$RWR1, "<br>",
                                  s1," Rank: ", plotdf$WR1, "<br>")
-    g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[5]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: WR2", "<br>",
                                  "Player: ", plotdf$PWR2, "<br>",
                                  s1,": ", plotdf$RWR2, "<br>",
                                  s1," Rank: ", plotdf$WR2, "<br>")
-    g$x$data[[5]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[8]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: WR3", "<br>",
                                  "Player: ", plotdf$PWR3, "<br>",
                                  s1,": ", plotdf$RWR3, "<br>",
                                  s1," Rank: ", plotdf$WR3, "<br>")
-    g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: WR1", "<br>",
                                  "Stat: ", s1, "<br>",
                                  "Average: ",round(mean(plotdf$RWR1, na.rm = TRUE),2), "<br>")
-    g$x$data[[4]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[6]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: WR2", "<br>",
                                  "Stat: ", s1, "<br>",
                                  "Average: ",round(mean(plotdf$RWR2, na.rm = TRUE),2), "<br>")
-    g$x$data[[6]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[9]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: WR3", "<br>",
                                  "Stat: ", s, "<br>",
                                  "Average: ",round(mean(plotdf$RWR3, na.rm = TRUE),2), "<br>")
@@ -437,23 +437,23 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         scale_color_manual(name = "Legend", values = c(TE1 = getPalette(2)[1], TE2 = getPalette(2)[2]), labels = c("TE1","TE2"))
     }
     g <- ggplotly(p)
-    g$x$data[[1]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: TE1", "<br>",
                                  "Player: ", plotdf$PTE1, "<br>",
                                  s1,": ", plotdf$RTE1, "<br>",
                                  s1," Rank: ", plotdf$TE1, "<br>")
-    g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[5]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Year: ", plotdf$year, "<br>",
                                  "Position: TE2", "<br>",
                                  "Player: ", plotdf$PTE2, "<br>",
                                  s1,": ", plotdf$RTE2, "<br>",
                                  s1," Rank: ", plotdf$TE2, "<br>")
-    g$x$data[[2]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[3]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: TE1", "<br>",
                                  "Stat: ", s1, "<br>",
                                  "Average: ",round(mean(plotdf$RTE1, na.rm = TRUE),2), "<br>")
-    g$x$data[[4]]$text <- paste0("Coach: ", coachA, "<br>",
+    g$x$data[[6]]$text <- paste0("Coach: ", coachA, "<br>",
                                  "Position: TE2", "<br>",
                                  "Stat: ", s1, "<br>",
                                  "Average: ",round(mean(plotdf$RTE2, na.rm = TRUE),2), "<br>")
