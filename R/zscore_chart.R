@@ -37,7 +37,7 @@ zscore_chart <- function(players,position,scoring,fwd,pfrplayers){
                                 "Z-Score:", posdf$zscore, "<br>",
                                 "Percentile:", posdf$percentile)
   }
-  final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/amazehayes/ffstats_navbar/master/www/FFStats_BlackLogo_3.5x3.5.png",
+  final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/amazehayes/ffstats_navbar/master/www/DLF_Logo-2-black-80.png",
                                            xref = "paper",
                                            yref = "paper",
                                            x = 0,

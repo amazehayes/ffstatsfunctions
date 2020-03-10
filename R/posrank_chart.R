@@ -78,7 +78,7 @@ posrank_chart <- function(players,years,scoring,con,pfrplayers){
     dfloop <- finishes %>% filter(player == players[i])
     g$x$data[[i]]$name <- paste0(dfloop$player)
   }
-  final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/dlfootball/dlf-tools/master/www/DLF_Logo-2-black-80.png?token=AHI2LZGUMTTCLNWX5ZK727S6KHA26",
+  final_prod <- g %>% layout(images = list(source = "https://raw.githubusercontent.com/amazehayes/ffstats_navbar/master/www/DLF_Logo-2-black-80.png",
                                            xref = "paper",
                                            yref = "paper",
                                            x = 0.01,
