@@ -25,10 +25,13 @@ zscore_chart <- function(players,position,scoring,fwd,pfrplayers){
   playerdf2 <- playerdf %>% select(player,zscore,age,position)
   playerdf3 <- melt(playerdf2,c("age","zscore","position"))
   posdf <- df %>% filter(position == pos, !is.na(zscore))
-  s <- ggplot(data = playerdf3,aes(x=age,y=zscore,col=value)) + geom_line(size=1.5) +
-    geom_point(data = posdf,aes(x=age,y=zscore),color = "black") +
-    labs(y='Z-Score',title = paste0("Z-Scores by Age for ",pos),x="Age") +
-    theme(title = element_text(size=14), axis.title=element_text(size=20), legend.title=element_blank())
+
+  getPalette = colorRampPalette(brewer.pal(length(all_players), "Dark2"))
+
+  s <- ggplot(data = playerdf3, aes(x = age, y = zscore, col = value)) + geom_line(size = 2) +
+    scale_color_manual(values = getPalette(length(all_players)), name = "") +
+    geom_point(data = posdf, aes(x = age, y = zscore), color = "black") + theme_classic() +
+    labs(y='Z-Score', title = paste0("Z-Scores by Age for ",pos), x="Age") + scale_y_continuous(breaks = c(-3,-2,-1,0,1,2,3))
   g <- plotly_build(s)
   for(i in 1:length(all_players)+1){
     g$x$data[[i]]$text <- paste("Player Name:", posdf$player, "<br>",
@@ -40,13 +43,13 @@ zscore_chart <- function(players,position,scoring,fwd,pfrplayers){
   final_prod <- g %>% layout(images = list(source =  "https://raw.githubusercontent.com/amazehayes/ffstats_navbar/master/www/DLF_Logo-2-black-80.png",
                                            xref = "paper",
                                            yref = "paper",
-                                           x = 0,
-                                           y = 1,
-                                           sizex = 1,
-                                           sizey = 1,
+                                           x = 0.9,
+                                           y = 1.08,
+                                           sizex = 0.1,
+                                           sizey = 0.1,
                                            opacity = 0.1,
                                            layer = "below"),
-                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
+                             legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.15)) %>%
     config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
   return(final_prod)
 }
