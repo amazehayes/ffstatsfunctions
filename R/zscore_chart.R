@@ -31,7 +31,8 @@ zscore_chart <- function(players,position,scoring,fwd,pfrplayers){
   s <- ggplot(data = playerdf3, aes(x = age, y = zscore, col = value)) + geom_line(size = 2) +
     scale_color_manual(values = getPalette(length(all_players)), name = "") +
     geom_point(data = posdf, aes(x = age, y = zscore), color = "black") + theme_classic() +
-    labs(y='Z-Score', title = paste0("Z-Scores by Age for ",pos), x="Age") + scale_y_continuous(breaks = c(-3,-2,-1,0,1,2,3))
+    labs(y='Z-Score', title = paste0("Z-Scores by Age for ",pos), x="Age") + scale_y_continuous(breaks = c(-3,-2,-1,0,1,2,3)) +
+    scale_x_continuous(breaks = unique(sort(posdf$age)))
   g <- plotly_build(s)
   for(i in 1:length(all_players)+1){
     g$x$data[[i]]$text <- paste("Player Name:", posdf$player, "<br>",
