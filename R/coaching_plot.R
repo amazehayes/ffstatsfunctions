@@ -87,13 +87,13 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
     if(s == "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = QB1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
         geom_point(size = 3, color = getPalette(2)[1]) + scale_x_discrete(limits = plotdf$year) +
-        scale_y_reverse() + ylab(s) + xlab("Year") + labs(title = paste(coachA,"QB1",s)) + theme_classic() +
+        scale_y_reverse() + ylab(s) + xlab("Year") + labs(title = "") + theme_classic() +
         geom_hline(yintercept = mean(plotdf$QB1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1)
     }
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RQB1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
         geom_point(size = 3, color = getPalette(2)[1]) + scale_x_discrete(limits = plotdf$year) +
-        ylab(s) + xlab("Year") + labs(title = paste(coachA,"QB1",s)) + theme_classic() +
+        ylab(s) + xlab("Year") + labs(title = "") + theme_classic() +
         geom_hline(yintercept = mean(plotdf$RQB1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1)
     }
     g <- ggplotly(p)
@@ -183,13 +183,13 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_line(aes(x = year, y = RB2, color = "RB2"), size = 1.5) +
         geom_point(aes(x = year, y = RB2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$RB2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
-        scale_x_discrete(limits = plotdf$year) + labs(title = paste(coachA,"RB1 & RB2",s)) +
+        scale_x_discrete(limits = plotdf$year) + labs(title = "") +
         scale_color_manual(name = "Legend", values = c(RB1 = getPalette(2)[1], RB2 = getPalette(2)[2]), labels = c("RB1","RB2"))
     }
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RRB1)) + geom_line(size = 1.5, aes(color = "RB1")) +
         geom_point(size = 3, color = getPalette(2)[1]) +
-        ylab(s) + xlab("Year") + theme_classic() + labs(title = paste(coachA,"RB1 & RB2",s)) +
+        ylab(s) + xlab("Year") + theme_classic() + labs(title = "") +
         geom_hline(yintercept = mean(plotdf$RRB1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = RRB2, color = "RB2"), size = 1.5) +
         geom_point(aes(x = year, y = RRB2), size = 3, color = getPalette(2)[2]) +
@@ -289,7 +289,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
     if(s == "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = WR1)) + geom_line(size = 1.5, aes(color = "WR1")) +
         geom_point(size = 3, color = getPalette(3)[1]) +
-        ylab(s) + xlab("Year") + theme_classic() + labs(title = paste(coachA,"WR1 & WR2 & WR3",s)) +
+        ylab(s) + xlab("Year") + theme_classic() + labs(title = "") +
         geom_hline(yintercept = mean(plotdf$WR1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = WR2, color = "WR2"), size = 1.5) +
         geom_point(aes(x = year, y = WR2), size = 3, color = getPalette(3)[2]) +
@@ -304,7 +304,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RWR1)) + geom_line(size = 1.5, aes(color = "WR1")) +
         geom_point(size = 3, color = getPalette(3)[1]) +
-        ylab(s) + xlab("Year") + theme_classic() + labs(title = paste(coachA,"WR1 & WR2 & WR3",s)) +
+        ylab(s) + xlab("Year") + theme_classic() + labs(title = "") +
         geom_hline(yintercept = mean(plotdf$RWR1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = RWR2, color = "WR2"), size = 1.5) +
         geom_point(aes(x = year, y = RWR2), size = 3, color = getPalette(3)[2]) +
@@ -417,7 +417,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
     if(s == "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = TE1)) + geom_line(size = 1.5, aes(color = "TE1")) +
         geom_point(size = 3, color = getPalette(2)[1]) +
-        ylab(s) + xlab("Year") + labs(title = paste(coachA,"TE1 & TE2",s)) + theme_classic() +
+        ylab(s) + xlab("Year") + labs(title = "") + theme_classic() +
         geom_hline(yintercept = mean(plotdf$TE1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = TE2, color = "TE2"), size = 1.5) +
         geom_point(aes(x = year, y = TE2), size = 3, color = getPalette(2)[2]) +
@@ -428,7 +428,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RTE1)) + geom_line(size = 1.5, aes(color = "TE1")) +
         geom_point(size = 3, color = getPalette(2)[1]) +
-        ylab(s) + xlab("Year") + labs(title = paste(coachA,"TE1 & TE2",s)) + theme_classic() +
+        ylab(s) + xlab("Year") + labs(title = "") + theme_classic() +
         geom_hline(yintercept = mean(plotdf$RTE1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
         geom_line(aes(x = year, y = RTE2, color = "TE2"), size = 1.5) +
         geom_point(aes(x = year, y = RTE2), size = 3, color = getPalette(2)[2]) +
