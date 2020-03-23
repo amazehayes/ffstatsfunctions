@@ -6,6 +6,7 @@
 #' @param position position
 #' @param stat_name stat name
 #' @param fwd database
+#' @param pfrplayers database
 #'
 #' @return plotly object
 #'
@@ -13,7 +14,7 @@
 #'
 #' @export
 
-get_qb_positional_chart <- function(qb,position,stat_name,fwd){
+get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
   qbA <- qb
   id <- as.character(pfrplayers %>% filter(position == "QB" & player == qbA) %>% select(player_id))
   pos <- position
