@@ -4,7 +4,7 @@
 \alias{get_qb_positional_chart}
 \title{QB Plot}
 \usage{
-get_qb_positional_chart(qb, position, stat_name, fwd)
+get_qb_positional_chart(qb, position, stat_name, fwd, pfrplayers)
 }
 \arguments{
 \item{qb}{qb}
@@ -14,6 +14,8 @@ get_qb_positional_chart(qb, position, stat_name, fwd)
 \item{stat_name}{stat name}
 
 \item{fwd}{database}
+
+\item{pfrplayers}{database}
 }
 \value{
 plotly object
