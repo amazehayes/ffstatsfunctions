@@ -24,6 +24,6 @@ plotly object
 creates qb plot
 }
 \examples{
-get_qb_positional_chart(qb,position,stat_name,fwd)
+get_qb_positional_chart(qb,position,stat_name,fwd,pfrplayers)
 
 }
