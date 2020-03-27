@@ -88,12 +88,14 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
       p <- ggplot(data = plotdf, aes(x = year, y = QB1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
         geom_point(size = 3, color = getPalette(2)[1]) + scale_x_discrete(limits = plotdf$year) +
         scale_y_reverse() + ylab(s) + xlab("Year") + labs(title = "") + theme_classic() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         geom_hline(yintercept = mean(plotdf$QB1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1)
     }
     if(s != "Fantasy Rank"){
       p <- ggplot(data = plotdf, aes(x = year, y = RQB1)) + geom_line(size = 1.5, color = getPalette(2)[1]) +
         geom_point(size = 3, color = getPalette(2)[1]) + scale_x_discrete(limits = plotdf$year) +
         ylab(s) + xlab("Year") + labs(title = "") + theme_classic() +
+        theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         geom_hline(yintercept = mean(plotdf$RQB1, na.rm = TRUE), color = "black", linetype = "dashed", size = 1)
     }
     g <- ggplotly(p)
@@ -183,7 +185,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_line(aes(x = year, y = RB2, color = "RB2"), size = 1.5) +
         geom_point(aes(x = year, y = RB2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$RB2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
-        scale_x_discrete(limits = plotdf$year) + labs(title = "") +
+        scale_x_discrete(limits = plotdf$year) + labs(title = "") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(RB1 = getPalette(2)[1], RB2 = getPalette(2)[2]), labels = c("RB1","RB2"))
     }
     if(s != "Fantasy Rank"){
@@ -194,7 +196,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_line(aes(x = year, y = RRB2, color = "RB2"), size = 1.5) +
         geom_point(aes(x = year, y = RRB2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$RRB2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
-        scale_x_discrete(limits = plotdf$year) +
+        scale_x_discrete(limits = plotdf$year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(RB1 = getPalette(2)[1], RB2 = getPalette(2)[2]), labels = c("RB1","RB2"))
     }
     g <- ggplotly(p)
@@ -297,7 +299,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_line(aes(x = year, y = WR3, color = "WR3"), size = 1.5) +
         geom_point(aes(x = year, y = WR3), size = 3, color = getPalette(3)[3]) +
         geom_hline(yintercept = mean(plotdf$WR3, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
-        scale_x_discrete(limits = plotdf$year) +
+        scale_x_discrete(limits = plotdf$year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(WR1 = getPalette(3)[1], WR2 = getPalette(3)[2], WR3 = getPalette(3)[3]),
                            labels = c("WR1","WR2","WR3"))
     }
@@ -312,7 +314,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_line(aes(x = year, y = RWR3, color = "WR3"), size = 1.5) +
         geom_point(aes(x = year, y = RWR3), size = 3, color = getPalette(3)[3]) +
         geom_hline(yintercept = mean(plotdf$RWR3, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
-        scale_x_discrete(limits = plotdf$year) +
+        scale_x_discrete(limits = plotdf$year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(WR1 = getPalette(3)[1], WR2 = getPalette(3)[2], WR3 = getPalette(3)[3]),
                            labels = c("WR1","WR2","WR3"))
     }
@@ -422,7 +424,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_line(aes(x = year, y = TE2, color = "TE2"), size = 1.5) +
         geom_point(aes(x = year, y = TE2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$TE2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
-        scale_x_discrete(limits = plotdf$year) +
+        scale_x_discrete(limits = plotdf$year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(TE1 = getPalette(2)[1], TE2 = getPalette(2)[2]), labels = c("TE1","TE2"))
     }
     if(s != "Fantasy Rank"){
@@ -433,7 +435,7 @@ get_coach_positional_chart <- function(coach,position,stat_name,fwd,output_type)
         geom_line(aes(x = year, y = RTE2, color = "TE2"), size = 1.5) +
         geom_point(aes(x = year, y = RTE2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$RTE2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
-        scale_x_discrete(limits = plotdf$year) +
+        scale_x_discrete(limits = plotdf$year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(TE1 = getPalette(2)[1], TE2 = getPalette(2)[2]), labels = c("TE1","TE2"))
     }
     g <- ggplotly(p)

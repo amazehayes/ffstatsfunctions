@@ -113,7 +113,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         geom_line(aes(x = Year, y = RB2, color = "RB2"), size = 1.5) +
         geom_point(aes(x = Year, y = RB2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$RB2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
-        scale_x_continuous(breaks = plotdf$Year) + labs(title = "") +
+        scale_x_continuous(breaks = plotdf$Year) + labs(title = "") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(RB1 = getPalette(2)[1], RB2 = getPalette(2)[2]), labels = c("RB1","RB2"))
     }
     if(s != "Fantasy Rank"){
@@ -124,7 +124,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         geom_line(aes(x = Year, y = RRB2, color = "RB2"), size = 1.5) +
         geom_point(aes(x = Year, y = RRB2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$RRB2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
-        scale_x_continuous(breaks = plotdf$Year) +
+        scale_x_continuous(breaks = plotdf$Year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(RB1 = getPalette(2)[1], RB2 = getPalette(2)[2]), labels = c("RB1","RB2"))
     }
     g <- ggplotly(p)
@@ -226,7 +226,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         geom_line(aes(x = Year, y = WR3, color = "WR3"), size = 1.5) +
         geom_point(aes(x = Year, y = WR3), size = 3, color = getPalette(3)[3]) +
         geom_hline(yintercept = mean(plotdf$WR3, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
-        scale_x_continuous(breaks = plotdf$Year) +
+        scale_x_continuous(breaks = plotdf$Year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(WR1 = getPalette(3)[1], WR2 = getPalette(3)[2], WR3 = getPalette(3)[3]),
                            labels = c("WR1","WR2","WR3"))
     }
@@ -241,7 +241,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         geom_line(aes(x = Year, y = RWR3, color = "WR3"), size = 1.5) +
         geom_point(aes(x = Year, y = RWR3), size = 3, color = getPalette(3)[3]) +
         geom_hline(yintercept = mean(plotdf$RWR3, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
-        scale_x_continuous(breaks = plotdf$Year) +
+        scale_x_continuous(breaks = plotdf$Year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(WR1 = getPalette(3)[1], WR2 = getPalette(3)[2], WR3 = getPalette(3)[3]),
                            labels = c("WR1","WR2","WR3"))
     }
@@ -350,7 +350,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         geom_line(aes(x = Year, y = TE2, color = "TE2"), size = 1.5) +
         geom_point(aes(x = Year, y = TE2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$TE2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) + scale_y_reverse() +
-        scale_x_continuous(breaks = plotdf$Year) +
+        scale_x_continuous(breaks = plotdf$Year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(TE1 = getPalette(2)[1], TE2 = getPalette(2)[2]), labels = c("TE1","TE2"))
     }
     if(s != "Fantasy Rank"){
@@ -361,7 +361,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         geom_line(aes(x = Year, y = RTE2, color = "TE2"), size = 1.5) +
         geom_point(aes(x = Year, y = RTE2), size = 3, color = getPalette(2)[2]) +
         geom_hline(yintercept = mean(plotdf$RTE2, na.rm = TRUE), color = "black", linetype = "dashed", size = 1) +
-        scale_x_continuous(breaks = plotdf$Year) +
+        scale_x_continuous(breaks = plotdf$Year) + theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
         scale_color_manual(name = "Legend", values = c(TE1 = getPalette(2)[1], TE2 = getPalette(2)[2]), labels = c("TE1","TE2"))
     }
     g <- ggplotly(p)
