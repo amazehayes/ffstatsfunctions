@@ -157,8 +157,9 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
                                              sizey = 0.15,
                                              opacity = 0.1,
                                              layer = "below"),
-                               legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
-      config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
+                               legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25),
+                               xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
+      config(displayModeBar = FALSE)
   }
   if(pos == "WR"){
     qbdfvalues <- matrix(nrow = length(qbyears), ncol = 9)
@@ -285,8 +286,9 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
                                              sizey = 0.15,
                                              opacity = 0.1,
                                              layer = "below"),
-                               legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
-      config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
+                               legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25),
+                               xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
+      config(displayModeBar = FALSE)
   }
   if(pos == "TE"){
     qbdfvalues <- matrix(nrow = length(qbyears), ncol = 6)
@@ -394,8 +396,9 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
                                              sizey = 0.15,
                                              opacity = 0.1,
                                              layer = "below"),
-                               legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25)) %>%
-      config(displayModeBar = FALSE) %>% layout(xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE))
+                               legend = list(orientation = "h", xanchor = "center", x = 0.5, y = -0.25),
+                               xaxis = list(fixedrange = TRUE), yaxis = list(fixedrange = TRUE)) %>%
+      config(displayModeBar = FALSE)
   }
   return(final_prod)
 }
