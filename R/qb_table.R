@@ -48,11 +48,10 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
   qbdffinal <- as.data.frame(qbdffinal)
   qbdffinal$Games <- as.numeric(qbdffinal$Games)
   qbdffinal$Year <- as.numeric(rownames(qbdffinal))
-  qbyears <- max(qbdffinal$Year):min(qbdffinal$Year)
 
   if(pos == "RB"){
-    qbdfvalues <- matrix(nrow = length(qbyears), ncol = 6)
-    rownames(qbdfvalues) <- qbyears
+    qbdfvalues <- matrix(nrow = length(unique(fwd$year)), ncol = 6)
+    rownames(qbdfvalues) <- unique(fwd$year)
     colnames(qbdfvalues) <- c("RB1","RB2","RRB1","RRB2","PRB1","PRB2")
     posv <- c("RB1","RB2")
 
@@ -66,11 +65,11 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
       }
       if(!is.na(teamA)){
         df <- fwd %>% filter(year == unique(fwd$year)[i], week %in% weeks, team == teamA) %>%
-          select(player,player_id,rushatt,games) %>% group_by(player_id,player) %>% summarise_all(sum)
+          select(player,player_id,sconvert[si],games) %>% group_by(player_id,player) %>% summarise_all(sum)
         positions <- unique(fwd %>% filter(year == unique(fwd$year)[i], week %in% weeks, team == teamA) %>%
                               select(player_id,position))
         df <- merge(df, positions, by = "player_id")
-        df <- df %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-rushatt, ties.method = "first"))
+        df <- df %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-get(sconvert[si]), ties.method = "first"))
         df$PositionTier <- paste0(df$position,df$Weeks_Pos_Rank)
         colnames(df)[3] <- "sort"
 
@@ -162,8 +161,8 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
       config(displayModeBar = FALSE)
   }
   if(pos == "WR"){
-    qbdfvalues <- matrix(nrow = length(qbyears), ncol = 9)
-    rownames(qbdfvalues) <- qbyears
+    qbdfvalues <- matrix(nrow = length(unique(fwd$year)), ncol = 9)
+    rownames(qbdfvalues) <- unique(fwd$year)
     colnames(qbdfvalues) <- c("WR1","WR2","WR3","RWR1","RWR2","RWR3","PWR1","PWR2","PWR3")
     posv <- c("WR1","WR2","WR3")
 
@@ -177,11 +176,11 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
       }
       if(!is.na(teamA)){
         df <- fwd %>% filter(year == unique(fwd$year)[i], week %in% weeks, team == teamA) %>%
-          select(player,player_id,rushatt,games) %>% group_by(player_id,player) %>% summarise_all(sum)
+          select(player,player_id,sconvert[si],games) %>% group_by(player_id,player) %>% summarise_all(sum)
         positions <- unique(fwd %>% filter(year == unique(fwd$year)[i], week %in% weeks, team == teamA) %>%
                               select(player_id,position))
         df <- merge(df, positions, by = "player_id")
-        df <- df %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-rushatt, ties.method = "first"))
+        df <- df %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-get(sconvert[si]), ties.method = "first"))
         df$PositionTier <- paste0(df$position,df$Weeks_Pos_Rank)
         colnames(df)[3] <- "sort"
 
@@ -193,7 +192,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         df2 <- df2 %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-get(sconvert[si]), ties.method = "first"))
 
         df <- merge(df,df2, by = "player_id")
-        df <- df %>% filter(grepl("RB",PositionTier)) %>% select(player_id,player.x,PositionTier,sconvert[si],Weeks_Pos_Rank.y)
+        df <- df %>% filter(grepl("WR",PositionTier)) %>% select(player_id,player.x,PositionTier,sconvert[si],Weeks_Pos_Rank.y)
 
         for(j in 1:length(posv)){
 
@@ -291,8 +290,8 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
       config(displayModeBar = FALSE)
   }
   if(pos == "TE"){
-    qbdfvalues <- matrix(nrow = length(qbyears), ncol = 6)
-    rownames(qbdfvalues) <- qbyears
+    qbdfvalues <- matrix(nrow = length(unique(fwd$year)), ncol = 6)
+    rownames(qbdfvalues) <- unique(fwd$year)
     colnames(qbdfvalues) <- c("TE1","TE2","RTE1","RTE2","PTE1","PTE2")
     posv <- c("TE1","TE2")
 
@@ -306,11 +305,11 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
       }
       if(!is.na(teamA)){
         df <- fwd %>% filter(year == unique(fwd$year)[i], week %in% weeks, team == teamA) %>%
-          select(player,player_id,rushatt,games) %>% group_by(player_id,player) %>% summarise_all(sum)
+          select(player,player_id,sconvert[si],games) %>% group_by(player_id,player) %>% summarise_all(sum)
         positions <- unique(fwd %>% filter(year == unique(fwd$year)[i], week %in% weeks, team == teamA) %>%
                               select(player_id,position))
         df <- merge(df, positions, by = "player_id")
-        df <- df %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-rushatt, ties.method = "first"))
+        df <- df %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-get(sconvert[si]), ties.method = "first"))
         df$PositionTier <- paste0(df$position,df$Weeks_Pos_Rank)
         colnames(df)[3] <- "sort"
 
@@ -322,7 +321,7 @@ get_qb_positional_chart <- function(qb,position,stat_name,fwd, pfrplayers){
         df2 <- df2 %>% group_by(position) %>% mutate(Weeks_Pos_Rank = rank(-get(sconvert[si]), ties.method = "first"))
 
         df <- merge(df,df2, by = "player_id")
-        df <- df %>% filter(grepl("RB",PositionTier)) %>% select(player_id,player.x,PositionTier,sconvert[si],Weeks_Pos_Rank.y)
+        df <- df %>% filter(grepl("TE",PositionTier)) %>% select(player_id,player.x,PositionTier,sconvert[si],Weeks_Pos_Rank.y)
 
         for(j in 1:length(posv)){
 
