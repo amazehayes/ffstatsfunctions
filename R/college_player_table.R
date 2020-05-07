@@ -112,9 +112,13 @@ get_player_stats <- function(player, con, datatype, combinedf){
                              "PD","FF","FR","FumbleYards","FumbleTD","MS.Tackles","MS.Sacks","MS.INT","MS.FF")
   }
 
-  yearstats$Age <- round(age_calc(dob, as.Date.character(paste0(yearstats$Year,"-08-01")), units = "years"),1)
+  if(is.na(dob)){
+    yearstats$Age <- NA
+  }
+  if(!is.na(dob)){
+    yearstats$Age <- round(age_calc(dob, as.Date.character(paste0(yearstats$Year,"-08-01")), units = "years"),1)
+  }
   yearstats <- yearstats[,c(1,2,ncol(yearstats),3:(ncol(yearstats)-1))]
-
   if(datatype == "gamelogs"){
     return(playercfblogs)
   }
