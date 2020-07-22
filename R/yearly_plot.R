@@ -36,9 +36,9 @@ yearly_player_chart <- function(players,years,scoring,con,pfrplayers){
     theme(title = element_text(size=14),
           axis.title=element_text(size=20),
           legend.title=element_blank()) +
-    scale_y_reverse(limits=c(pmax,0)) + theme_classic() +
+    scale_y_reverse(limits=c(pmax,0), breaks = c(1,1:pmax*5)) + theme_classic() +
     scale_color_manual(values=getPalette(colorCount)) +
-    scale_x_discrete(limits = years) +
+    scale_x_continuous(breaks = years) +
     labs(y='Position Finish',title = tt_p,x="Year")
 
   g <- plotly_build(s)
